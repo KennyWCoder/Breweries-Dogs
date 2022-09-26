@@ -1,0 +1,13 @@
+body {
+    background-color: rgb(198, 152, 240);
+    text-align: center;
+    margin: 5%;
+}
+
+p {
+    font-size: xx-large;
+}
+img {
+    width: 600px;
+    height: 600px;
+}
