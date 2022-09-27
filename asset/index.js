@@ -19,7 +19,7 @@ fetch(breweryAPIURL)
 })
 .catch(function (error) {
   alert("Please enter a valid city name");
-  return;
+  return; 
 });
 
 // Basic fetch request for Random Dog API
