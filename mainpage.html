@@ -1,87 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./asset/main.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./asset/main.css" />
     <title>Breweries & Doggies</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <header>Breweries & Doggies</header>
     <div id="container">
-        <div id="search-section">
-            <form id="search-card">
-                <input id="search-city" type="text" placeholder="Enter a city name">
-                <button id="search-btn">Search</button>
-            </form>
-            <button id="clear-search">Clear</button>
-            <hr>
-            <div id="search-history"></div>
-        </div>
-        <div id="info">Please search a city for your local breweries. You can also get a random to show your friends or as a conversation starter</div>
-        <div id="breweries">
-            
-            
-            <h3>Here is the list of 5 breweries in your city:</h3>
+      <div id="search-section">
+        <form id="search-card">
+          <input id="search-city" type="text" placeholder="Enter a city name" />
+          <input
+            id="search-state"
+            type="text"
+            placeholder="Enter a the state name"
+          />
+          <button id="search-btn">Search</button>
+        </form>
+        <button id="clear-search">Clear</button>
+        <hr />
+        <div id="search-history"></div>
+      </div>
+      <div id="info">
+        Please search a city for your local breweries. You can also get a random
+        to show your friends or as a conversation starter
+      </div>
+      <div id="breweries">
+        <h3>Here is the list of 5 breweries in your city:</h3>
 
-            <!-- Brewery 1 -->
-            <h4 class="brewery-name">Name</h4>
-            <p class="address">Address</p>
-            <p class="city">City</p>
-            <p class="state">WA</p>
-            <p class="postal-code">Zip</p>
-            <p class="phone">Phone Number</p>
-            <p class="website">website</p>
-           
-            <!-- Brewery 2 -->
-            <h4 class="brewery-name"></h4>
-            <p class="address"></p>
-            <p class="city"></p>
-            <p class="state"></p>
-            <p class="postal-code"></p>
-            <p class="phone"></p>
-            <p class="website"></p>
+        <!-- Brewery 1 -->
+        <h4 class="brewery-name"></h4>
+        <p class="address"></p>
+        <p class="city"></p>
+        <p class="phone"></p>
+        <a class="website" href=""></a>
 
-                 <!-- Brewery 3 -->
-            <h4 class="brewery-name"></h4>
-            <p class="address"></p>
-            <p class="city"></p>
-            <p class="state"></p>
-            <p class="postal-code"></p>
-            <p class="phone"></p>
-            <p class="website"></p>
+        <!-- Brewery 2 -->
+        <h4 class="brewery-name"></h4>
+        <p class="address"></p>
+        <p class="city"></p>
+        <p class="state"></p>
+        <p class="postal-code"></p>
+        <p class="phone"></p>
+        <a class="website" href=""></a>
 
+        <!-- Brewery 3 -->
+        <h4 class="brewery-name"></h4>
+        <p class="address"></p>
+        <p class="city"></p>
+        <p class="state"></p>
+        <p class="postal-code"></p>
+        <p class="phone"></p>
+        <a class="website" href=""></a>
 
-                 <!-- Brewery 4 -->
-            <h4 class="brewery-name"></h4>
-            <p class="address"></p>
-            <p class="city"></p>
-            <p class="state"></p>
-            <p class="postal-code"></p>
-            <p class="phone"></p>
-            <p class="website"></p>
+        <!-- Brewery 4 -->
+        <h4 class="brewery-name"></h4>
+        <p class="address"></p>
+        <p class="city"></p>
+        <p class="state"></p>
+        <p class="postal-code"></p>
+        <p class="phone"></p>
+        <a class="website" href=""></a>
 
+        <!-- Brewery 5 -->
+        <h4 class="brewery-name"></h4>
+        <p class="address"></p>
+        <p class="city"></p>
+        <p class="state"></p>
+        <p class="postal-code"></p>
+        <p class="phone"></p>
+        <a class="website" href=""></a>
+      </div>
 
-                 <!-- Brewery 5 -->
-            <h4 class="brewery-name"></h4>
-            <p class="address"></p>
-            <p class="city"></p>
-            <p class="state"></p>
-            <p class="postal-code"></p>
-            <p class="phone"></p>
-            <p class="website"></p>
-
-
-        </div>
-        
-        <div id="dog">
-            <img src="" alt="">
-        </div>
+      <div id="dog">
+        <img id="dog-photo" src="" />
+      </div>
     </div>
     <script src="./asset/index.js"></script>
-</body>
-
+  </body>
 </html>
