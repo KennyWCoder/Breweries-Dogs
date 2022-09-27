@@ -1,34 +1,66 @@
-// Initialize city and state
-var city = "";
-var state = "";
 
 // Search button
 var searchBtn = document.getElementById("search-btn");
 
-var breweryList = document.querySelectorAll(".brewery-name");
+var clearHistory = document.getElementById("clear-search");
+
+var showHistory = document.getElementById("search-history");
+
+
+// var breweryHeader = document.querySelector("#brewery-header");
+
+var searchHistory = JSON.parse(localStorage.getItem("search")) || [];
 
 // Searches for breweries and displays dog photo when search button is clicked
 searchBtn.addEventListener("click", function (event) {
   event.preventDefault();
-
   // Gets the value of user input city
-  city = document.getElementById("search-city").value;
-  state = document.getElementById("search-state").value;
+  var city = document.getElementById("search-city").value;
+  var state = document.getElementById("search-state").value;
   console.log(city);
   console.log(state);
-  fetchBreweries();
+  fetchBreweries(city, state);
   fetchDogs();
+  //set object
+  searchHistory.push({"city": city, "state": state});
+  localStorage.setItem("search", JSON.stringify(searchHistory));
+  renderSearchHistory();
 });
 
-var breweryName = document.getElementsByClassName("brewery-name");
-var breweryAddress = document.getElementsByClassName("address");
-var breweryCityStateZip = document.getElementsByClassName("city");
-var breweryPhone = document.getElementsByClassName("phone");
-var breweryWebsite = document.getElementsByClassName("website");
+clearHistory.addEventListener("click", function () {
+  localStorage.clear();
+  searchHistory = [];
+  renderSearchHistory();
+})
+
+function renderSearchHistory() {
+  showHistory.innerHTML = "";
+  for (var i = 0; i < searchHistory.length; i++) {
+    var passObj = JSON.stringify(searchHistory[i]);
+    console.log(searchHistory[i]);
+      const historyList = document.createElement("input");
+      historyList.setAttribute("type", "text");
+      //need css
+      // historyList.setAttribute("class", "btn btn-info btn-block");
+      //set array object city and state into attribute so we can get the direct city and state to use the function of fetchBreweries.
+      historyList.setAttribute("value", searchHistory[i].city + ", " + searchHistory[i].state);
+      historyList.setAttribute("city",searchHistory[i].city);
+      historyList.setAttribute("state",searchHistory[i].state);
+      historyList.setAttribute("readonly", true);
+      historyList.addEventListener("click", function() {
+          fetchBreweries(historyList.getAttribute("city"), historyList.getAttribute("state"));
+          fetchDogs();
+      })
+      showHistory.append(historyList);
+  }
+}
+
+renderSearchHistory();
 
 // Fetches breweries
-function fetchBreweries() {
+function fetchBreweries(city, state) {
   // Brewery API URL
+
   var breweryAPIURL =
     "https://api.openbrewerydb.org/breweries?by_state=" +
     state +
@@ -42,18 +74,36 @@ function fetchBreweries() {
       return response.json();
     })
     .then(function (data) {
-      console.log(data);
-
-      for (var i = 0; i < breweryList.length; i++) {
+      //for loop to create div
+      for (var i = 0; i < data.length; i++) {
+      var breweryList = document.createElement("div");
+      breweryList.className = "brewery-container";
+      document.getElementById("breweries").appendChild(breweryList);
+      }
+      //select newly created container
+      var breweryContainer = document.querySelectorAll(".brewery-container");
+      //for loop to create element
+      for (var i = 0; i < data.length; i++) {
         console.log(data.name);
-        breweryName[i].textContent = data[i].name;
-        breweryAddress[i].textContent = data[i].street;
-        breweryCityStateZip[i].textContent =
-          data[i].city + ", " + data[i].state + ", " + data[i].postal_code;
-        breweryPhone[i].textContent = data[i].phone;
-        breweryWebsite[i].textContent = data[i].website_url;
+        console.log(breweryList.length);
 
-        breweryWebsite[i].setAttribute("href", data[i].website_url);
+        breweryContainer[i].innerHTML= "";
+        //create brewery name header
+        var breweryName = document.createElement("h4");
+        breweryName.innerHTML = data[i].name;
+        breweryContainer[i].append(breweryName);
+        //create brewery address
+        var breweryAddress = document.createElement("p");
+        breweryAddress.innerHTML = data[i].street + ", " + data[i].city + ", " + data[i].state + ", " + data[i].postal_code;
+        breweryContainer[i].append(breweryAddress);
+        //create brewery phone contact
+        var breweryPhone = document.createElement("p");
+        breweryPhone.innerHTML = data[i].phone;
+        breweryContainer[i].append(breweryPhone);
+        var breweryWebsite = document.createElement("a");
+        breweryWebsite.innerHTML = data[i].website_url;
+        breweryWebsite.setAttribute("href", data[i].website_url);
+        breweryContainer[i].append(breweryWebsite);
       }
     });
   // .catch(function (error) {
