@@ -41,13 +41,13 @@ function renderSearchHistory() {
       const historyList = document.createElement("input");
       historyList.setAttribute("type", "text");
       //need css
-      // historyList.setAttribute("class", "btn btn-info btn-block");
+      historyList.setAttribute("class", "waves-effect waves-teal btn-flat");
       //set array object city and state into attribute so we can get the direct city and state to use the function of fetchBreweries.
       historyList.setAttribute("value", searchHistory[i].city + ", " + searchHistory[i].state);
       historyList.setAttribute("city",searchHistory[i].city);
       historyList.setAttribute("state",searchHistory[i].state);
       historyList.setAttribute("readonly", true);
-      historyList.addEventListener("click", function() {
+      historyList.addEventListener("click", function(event) {
           fetchBreweries(historyList.getAttribute("city"), historyList.getAttribute("state"));
           fetchDogs();
       })
@@ -55,7 +55,6 @@ function renderSearchHistory() {
   }
 }
 
-renderSearchHistory();
 
 // Fetches breweries
 function fetchBreweries(city, state) {
@@ -77,7 +76,7 @@ function fetchBreweries(city, state) {
       //for loop to create div
       for (var i = 0; i < data.length; i++) {
       var breweryList = document.createElement("div");
-      breweryList.className = "brewery-container";
+      breweryList.className = "brewery-container card";
       document.getElementById("breweries").appendChild(breweryList);
       }
       //select newly created container
@@ -94,16 +93,20 @@ function fetchBreweries(city, state) {
         breweryContainer[i].append(breweryName);
         //create brewery address
         var breweryAddress = document.createElement("p");
-        breweryAddress.innerHTML = data[i].street + ", " + data[i].city + ", " + data[i].state + ", " + data[i].postal_code;
-        breweryContainer[i].append(breweryAddress);
+        breweryAddress.innerHTML = data[i].street;
+        breweryContainer[i].appendChild(breweryAddress);
+        var breweryAddress2 = document.createElement("p");
+        breweryAddress2.innerHTML = data[i].city + ", " + data[i].state + ", " + data[i].postal_code;
+        breweryContainer[i].appendChild(breweryAddress2);
         //create brewery phone contact
-        var breweryPhone = document.createElement("p");
-        breweryPhone.innerHTML = data[i].phone;
-        breweryContainer[i].append(breweryPhone);
+        var breweryPhone = document.createElement("a");
+        breweryPhone.innerHTML = "📞  " + data[i].phone;
+        breweryPhone.setAttribute("href", "tel:" + data[i].phone);
+        breweryContainer[i].appendChild(breweryPhone);
         var breweryWebsite = document.createElement("a");
-        breweryWebsite.innerHTML = data[i].website_url;
+        breweryWebsite.innerHTML = "🖥  " + data[i].website_url;
         breweryWebsite.setAttribute("href", data[i].website_url);
-        breweryContainer[i].append(breweryWebsite);
+        breweryContainer[i].appendChild(breweryWebsite);
       }
     });
   // .catch(function (error) {
@@ -128,6 +131,7 @@ function fetchDogs() {
       console.log(data);
       console.log(data.message);
       dogPhoto.setAttribute("src", data.message);
+      dogPhoto.classList.remove("hide");
       dogPhoto.setAttribute("alt", "cute dog photo");
     });
 
