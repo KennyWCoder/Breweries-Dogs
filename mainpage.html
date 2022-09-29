@@ -1,48 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./asset/main.css" />
     <title>Breweries & Doggies</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <header>Breweries & Doggies</header>
     <div id="container" class="row">
-        <div id="search-section" class="col s3">
-            <form id="search-card">
-                <input id="search-city" type="text" placeholder="Enter a city name" />
-                <input id="search-state" type="text" placeholder="Enter a the state name" />
-                <button id="search-btn" class="btn waves-effect waves-light">Search<i
-                        class="material-icons right">send</i></button>
-            </form>
-            <button id="clear-search" class="btn waves-effect waves-light">Clear<i class="material-icons right">
-                    delete_forever
-            </i></button>
-            <hr />
-            <div id="search-history"></div>
-        </div>
-        <div id="info">
-            <h4>Please search a city for your local breweries. You can also get a random
-                to show your friends or as a conversation starter
-            </h4>
-            <h3 id="brewery-header">Here is a list of breweries in your city:</h3>
-        </div>
-        <div id="breweries" class="col s6">
-            
+      <div id="search-section" class="col s3">
+        <form id="search-card">
+          <input id="search-city" type="text" placeholder="Enter a city name" />
+          <input
+            id="search-state"
+            type="text"
+            placeholder="Enter a the state name"
+          />
+          <button id="search-btn" class="btn waves-effect purple">
+            Search<i class="material-icons right">send</i>
+          </button>
+        </form>
+        <button id="clear-search" class="btn waves-effect purple">
+          Clear<i class="material-icons right"> delete_forever </i>
+        </button>
+        <hr />
+        <div id="search-history"></div>
+      </div>
+      <div id="info">
+        <h4>
+          Please search a city for your local breweries. You can also get a
+          random to show your friends or as a conversation starter
+        </h4>
+        <h3 id="brewery-header">Here is a list of breweries in your city:</h3>
+      </div>
+      <div id="breweries" class="col s6"></div>
 
-        </div>
-
-        <div id="dog" class="col s3">
-            <img id="dog-photo" class="hide" src="" />
-        </div>
+      <div id="dog" class="col s3">
+        <img id="dog-photo" class="hide" src="" />
+      </div>
     </div>
     <script src="./asset/index.js"></script>
-</body>
-
+  </body>
 </html>
