@@ -6,10 +6,6 @@ header {
     text-align: right;
 }
 
-body {
- 
-}
-
 button {
     margin: 1%;
     width: 100%;
@@ -37,5 +33,3 @@ a{
     display: block;
     padding: 5px 0;
 }
-
-
