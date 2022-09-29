@@ -74,6 +74,7 @@ function fetchBreweries(city, state) {
     })
     .then(function (data) {
       //for loop to create div
+      document.getElementById("breweries").innerHTML = "";
       for (var i = 0; i < data.length; i++) {
       var breweryList = document.createElement("div");
       breweryList.className = "brewery-container card";
