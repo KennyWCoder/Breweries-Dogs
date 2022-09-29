@@ -55,6 +55,7 @@ function renderSearchHistory() {
   }
 }
 
+renderSearchHistory();
 
 // Fetches breweries
 function fetchBreweries(city, state) {

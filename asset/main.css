@@ -7,15 +7,17 @@ header {
 }
 
 body {
-    background-image: url(./dogssss.jpeg);
-    background-repeat: no-repeat;
-    background-size:cover; 
+ 
 }
 
 button {
     margin: 1%;
+    width: 100%;
 }
 
+.btn-flat {
+    text-align: center;
+}
 .btn-flat:hover {
     color: purple;
 }
@@ -34,4 +36,5 @@ a{
     display: block;
     padding: 5px 0;
 }
+
 
