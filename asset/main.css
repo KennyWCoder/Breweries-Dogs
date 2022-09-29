@@ -25,6 +25,7 @@ button {
 #dog-photo {
     height: 100%;
     width: 100%;
+    margin-top: 7px;
 }
 
 .brewery-container {
