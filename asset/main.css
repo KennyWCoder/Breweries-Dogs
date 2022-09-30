@@ -50,6 +50,7 @@ button {
 
 input {
     font-family: Overlock;
+    text-align: center;
 }
 
 /* Styles container for each brewery card  */
