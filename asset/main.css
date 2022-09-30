@@ -1,3 +1,7 @@
+* {
+    font-family: Overlock;
+}
+
 /* Styles body of page */
 body {
     background-color:#e6d1ec;
@@ -24,6 +28,7 @@ a {
 button {
     margin: 1%;
     width: 100%;
+    font-family: Overlock;
 }
 
 /* Search history buttons */
@@ -40,6 +45,11 @@ button {
 ::placeholder {
     color:grey;
     text-align:center;
+    font-family: Overlock;
+}
+
+input {
+    font-family: Overlock;
 }
 
 /* Styles container for each brewery card  */
@@ -63,4 +73,8 @@ button {
     height: 100%;
     width: 100%;
     margin-top: 7px;
+}
+
+#search-history {
+    font-family: Overlock;
 }
