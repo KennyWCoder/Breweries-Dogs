@@ -1,8 +1,10 @@
 // Search button
 var searchBtn = document.getElementById("search-btn");
 
+// Clear search history button
 var clearHistory = document.getElementById("clear-search");
 
+// Displays previous searches
 var showHistory = document.getElementById("search-history");
 
 // var breweryHeader = document.querySelector("#brewery-header");
@@ -19,25 +21,50 @@ searchBtn.addEventListener("click", function (event) {
   console.log(city);
   console.log(state);
 
+  // create an if statement where if input == null, then return
+
+  // if (!city && state) {
+  //   alert("error");
+  // } else {
   fetchBreweries(city, state);
   fetchDogs();
   //set object
+
+  // TODO: get this to work! this is to get rid of duplicate searches
+  // const uniqueIds = [];
+  // const unique = searchHistory.filter((element) => {
+  //   const isDuplicate = uniqueIds.includes(element.city);
+
+  //   if (!isDuplicate) {
+  //     uniqueIds.push(element.city);
+
+  //     return true;
+  //   }
+  //   return false;
+  // });
+
+  // console.log(unique);
+
+  // Adds search to search history
   searchHistory.push({ city: city, state: state });
   localStorage.setItem("search", JSON.stringify(searchHistory));
   renderSearchHistory();
 });
 
+// Clears search history when clear button is clicked
 clearHistory.addEventListener("click", function () {
   localStorage.clear();
   searchHistory = [];
   renderSearchHistory();
 });
 
+// Displays search history
 function renderSearchHistory() {
   showHistory.innerHTML = "";
   for (var i = 0; i < searchHistory.length; i++) {
     console.log(searchHistory[i]);
     console.log(searchHistory);
+
     const historyList = document.createElement("input");
     historyList.setAttribute("type", "text");
     //need css
@@ -50,6 +77,7 @@ function renderSearchHistory() {
     historyList.setAttribute("city", searchHistory[i].city);
     historyList.setAttribute("state", searchHistory[i].state);
     historyList.setAttribute("readonly", true);
+
     historyList.addEventListener("click", function (event) {
       fetchBreweries(
         historyList.getAttribute("city"),
@@ -63,10 +91,9 @@ function renderSearchHistory() {
 
 renderSearchHistory();
 
-// Fetches breweries
+// Fetches brewery data
 function fetchBreweries(city, state) {
   // Brewery API URL
-
   var breweryAPIURL =
     "https://api.openbrewerydb.org/breweries?by_state=" +
     state +
@@ -74,7 +101,10 @@ function fetchBreweries(city, state) {
     city +
     "&per_page=5";
 
+  console.log(city);
+  console.log(state);
   console.log(breweryAPIURL);
+
   fetch(breweryAPIURL)
     .then(function (response) {
       return response.json();
@@ -83,24 +113,40 @@ function fetchBreweries(city, state) {
       //for loop to create div
       console.log(data);
       document.getElementById("breweries").innerHTML = "";
+
+      // If city or state
+      // if (!city || state) {
+      //   alert("no breweries");
+      //   return;
+      // }
+
+      // Creates a card for each brewery and adds it to the brewery list
       for (var i = 0; i < data.length; i++) {
         var breweryList = document.createElement("div");
         breweryList.className = "brewery-container card";
         document.getElementById("breweries").appendChild(breweryList);
+
+        // if (data.length == 0) {
+        //   ("alert: no breweries in your city");
+        // }
       }
-      //select newly created container
+
+      // Container for each brewery info card
       var breweryContainer = document.querySelectorAll(".brewery-container");
-      //for loop to create element
+
+      // Inserts data for each brewery
       for (var i = 0; i < data.length; i++) {
         console.log(data.name);
         console.log(breweryList.length);
 
         breweryContainer[i].innerHTML = "";
-        //create brewery name header
+
+        // Creates header for brewery name
         var breweryName = document.createElement("h4");
         breweryName.innerHTML = data[i].name;
         breweryContainer[i].append(breweryName);
-        //create brewery address
+
+        // Creates brewery address
         var breweryAddress = document.createElement("p");
         breweryAddress.innerHTML = data[i].street;
         breweryContainer[i].appendChild(breweryAddress);
@@ -108,20 +154,41 @@ function fetchBreweries(city, state) {
         breweryAddress2.innerHTML =
           data[i].city + ", " + data[i].state + ", " + data[i].postal_code;
         breweryContainer[i].appendChild(breweryAddress2);
-        //create brewery phone contact
+
+        // Creates and links to brewery phone number
         var breweryPhone = document.createElement("a");
         breweryPhone.innerHTML = "📞  " + data[i].phone;
         breweryPhone.setAttribute("href", "tel:" + data[i].phone);
         breweryContainer[i].appendChild(breweryPhone);
+
+        // Creates links to brewery website
         var breweryWebsite = document.createElement("a");
         breweryWebsite.innerHTML = "🖥  " + data[i].website_url;
         breweryWebsite.setAttribute("href", data[i].website_url);
         breweryContainer[i].appendChild(breweryWebsite);
       }
+
+      // Displays a message when no breweries are found
+      if (!data.length) {
+        var noBrewery = document.createElement("h5");
+        noBrewery.innerHTML =
+          "Sorry, no breweries were found. On the plus side, you can still enjoy a cute dog photo!";
+
+        document.getElementById("breweries").appendChild(noBrewery);
+        return;
+      }
+
+      // if (city && state == null) {
+      //   alert("no city and state entered");
+      //   return;
+      // }
     });
+
+  // TODO: this catch doesnt work
   // .catch(function (error) {
   //   alert("Please enter a valid city name");
   //   return;
+
   // });
 }
 
@@ -141,18 +208,15 @@ function fetchDogs() {
       console.log(data);
       console.log(data.message);
       dogPhoto.setAttribute("src", data.message);
+      // Unhides the dog photo image section
       dogPhoto.classList.remove("hide");
+      // Adds alt attribute to images
       dogPhoto.setAttribute("alt", "cute dog photo");
     });
-
-  // might not need this since there wont be errors
-  // .catch(function (error) {
-  //   alert("Please enter a valid city name");
-  //   return;
-  // });
 }
 
-// TODO: Add function for local storage to save city searches OR to save specific brewerires
-// TODO: when saved searches are clicked, it goes to that search results
 // TODO: add if statement so that user always has to enter a city because if no city is entered but search button is clicked, it'll still return some random data
-// TODO: hide dog photo
+
+// TODO: Add splice or filter so no duplicate searches added to the webpage
+
+// TODO: if phone number or website is null, then hide it
