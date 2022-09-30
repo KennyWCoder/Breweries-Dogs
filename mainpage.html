@@ -33,7 +33,9 @@
       BrewDogs
       <span class="material-symbols-outlined"> sports_bar </span>
     </header>
+
     <div id="container" class="row">
+      <!-- Search bar section -->
       <div id="search-section" class="col s3">
         <form id="search-card">
           <input id="search-city" type="text" placeholder="Enter a city name" />
@@ -42,30 +44,44 @@
             type="text"
             placeholder="Enter the state name"
           />
+
+          <!-- Search button -->
           <button id="search-btn" class="btn waves-effect blue">
             Search<i class="material-icons right">send</i>
           </button>
         </form>
+
+        <!-- Clear button -->
         <button id="clear-search" class="btn waves-effect blue">
           Clear<i class="material-icons right"> delete_forever </i>
         </button>
+
         <hr />
+
+        <!-- Search history section that displays previous searches -->
         <div id="search-history"></div>
       </div>
+
+      <!-- Application info -->
       <div id="info">
         <h5>
           Please enter a city and state in the US for a list of your local
           breweries. As a bonus, you'll also receive a cute dog photo you can
           show off at the brewery!
         </h5>
+
         <h4 id="brewery-header">Breweries in your city:</h4>
       </div>
+
+      <!-- Section that displays brewery data -->
       <div id="breweries" class="col s6"></div>
 
+      <!-- Section that displays dog photo -->
       <div id="dog" class="col s3">
         <img id="dog-photo" class="hide" src="" />
       </div>
     </div>
+
     <script src="./asset/index.js"></script>
   </body>
 </html>
