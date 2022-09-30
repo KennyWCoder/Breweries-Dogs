@@ -1,9 +1,16 @@
+/* Add Google font to all elements of page */
+* {
+    font-family: Overlock;
+}
+
+/* Align contents of body and style the background color */
 body {
     background-color:#e6d1ec;
     text-align: center;
     margin: 5%;
 }
 
+/* Sizing for paragraph elements */
 p {
     font-size: xx-large;
 }
