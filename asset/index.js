@@ -30,21 +30,6 @@ searchBtn.addEventListener("click", function (event) {
   fetchDogs();
   //set object
 
-  // TODO: get this to work! this is to get rid of duplicate searches
-  // const uniqueIds = [];
-  // const unique = searchHistory.filter((element) => {
-  //   const isDuplicate = uniqueIds.includes(element.city);
-
-  //   if (!isDuplicate) {
-  //     uniqueIds.push(element.city);
-
-  //     return true;
-  //   }
-  //   return false;
-  // });
-
-  // console.log(unique);
-
   // Adds search to search history
   searchHistory.push({ city: city, state: state });
   localStorage.setItem("search", JSON.stringify(searchHistory));
@@ -55,13 +40,25 @@ searchBtn.addEventListener("click", function (event) {
 clearHistory.addEventListener("click", function () {
   localStorage.clear();
   searchHistory = [];
+  // searchUnique = [];
   renderSearchHistory();
 });
+
+//test
+
 
 // Displays search history
 function renderSearchHistory() {
   showHistory.innerHTML = "";
-  for (var i = 0; i < searchHistory.length; i++) {
+
+  //remove duplicate
+  function getUniqueListBy(arr, key) {
+    return [...new Map(arr.map(item => [item[key], item])).values()]
+  }
+  const searchUnique = getUniqueListBy(searchHistory, "city");
+  console.log(searchUnique);
+
+  for (var i = 0; i < searchUnique.length; i++) {
     console.log(searchHistory[i]);
     console.log(searchHistory);
 
@@ -72,10 +69,10 @@ function renderSearchHistory() {
     //set array object city and state into attribute so we can get the direct city and state to use the function of fetchBreweries.
     historyList.setAttribute(
       "value",
-      searchHistory[i].city + ", " + searchHistory[i].state
+      searchUnique[i].city + ", " + searchUnique[i].state
     );
-    historyList.setAttribute("city", searchHistory[i].city);
-    historyList.setAttribute("state", searchHistory[i].state);
+    historyList.setAttribute("city", searchUnique[i].city);
+    historyList.setAttribute("state", searchUnique[i].state);
     historyList.setAttribute("readonly", true);
 
     historyList.addEventListener("click", function (event) {
