@@ -154,13 +154,22 @@ function fetchBreweries(city, state) {
 
         // Creates and links to brewery phone number
         var breweryPhone = document.createElement("a");
-        breweryPhone.innerHTML = "📞  " + data[i].phone;
+        if(data[i].phone != null) {
+          breweryPhone.innerHTML = "📞  " + data[i].phone;
+        } else {
+          breweryPhone.innerHTML = "";
+        }
         breweryPhone.setAttribute("href", "tel:" + data[i].phone);
         breweryContainer[i].appendChild(breweryPhone);
 
         // Creates links to brewery website
         var breweryWebsite = document.createElement("a");
-        breweryWebsite.innerHTML = "🖥  " + data[i].website_url;
+        if(data[i].website_url != null) {
+          breweryWebsite.innerHTML = "🖥  " + data[i].website_url;
+        }else {
+          breweryWebsite.innerHTML = "";
+        }
+        
         breweryWebsite.setAttribute("href", data[i].website_url);
         breweryContainer[i].appendChild(breweryWebsite);
       }
