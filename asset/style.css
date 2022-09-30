@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(198, 152, 240);
+    background-color:#e6d1ec;
     text-align: center;
     margin: 5%;
 }
@@ -8,7 +8,8 @@ p {
     font-size: xx-large;
 }
 
+/* Styles image */
 img {
-    width: 600px;
-    height: 600px;
+    width: 400px;
+    height: 500px;
 }
