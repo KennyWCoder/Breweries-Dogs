@@ -7,28 +7,24 @@ var clearHistory = document.getElementById("clear-search");
 // Displays previous searches
 var showHistory = document.getElementById("search-history");
 
-// var breweryHeader = document.querySelector("#brewery-header");
-
+// Search History
 var searchHistory = JSON.parse(localStorage.getItem("search")) || [];
+
+// Dog photo image section
+var dogPhoto = document.getElementById("dog-photo");
 
 // Searches for breweries and displays dog photo when search button is clicked
 searchBtn.addEventListener("click", function (event) {
   event.preventDefault();
 
-  // Gets the value of user input city
+  // Gets the value of user inputted city and state
   var city = document.getElementById("search-city").value;
   var state = document.getElementById("search-state").value;
   console.log(city);
   console.log(state);
 
-  // create an if statement where if input == null, then return
-
-  // if (!city && state) {
-  //   alert("error");
-  // } else {
   fetchBreweries(city, state);
   fetchDogs();
-  //set object
 
   // Adds search to search history
   searchHistory.push({ city: city, state: state });
@@ -40,20 +36,16 @@ searchBtn.addEventListener("click", function (event) {
 clearHistory.addEventListener("click", function () {
   localStorage.clear();
   searchHistory = [];
-  // searchUnique = [];
   renderSearchHistory();
 });
-
-//test
-
 
 // Displays search history
 function renderSearchHistory() {
   showHistory.innerHTML = "";
 
-  //remove duplicate
+  // Removes duplicate searches from appearing under the search history
   function getUniqueListBy(arr, key) {
-    return [...new Map(arr.map(item => [item[key], item])).values()]
+    return [...new Map(arr.map((item) => [item[key], item])).values()];
   }
   const searchUnique = getUniqueListBy(searchHistory, "city");
   console.log(searchUnique);
@@ -64,9 +56,9 @@ function renderSearchHistory() {
 
     const historyList = document.createElement("input");
     historyList.setAttribute("type", "text");
-    //need css
     historyList.setAttribute("class", "waves-effect waves-teal btn-flat");
-    //set array object city and state into attribute so we can get the direct city and state to use the function of fetchBreweries.
+
+    // set array object city and state into attribute so we can get the direct city and state to use the function of fetchBreweries.
     historyList.setAttribute(
       "value",
       searchUnique[i].city + ", " + searchUnique[i].state
@@ -111,21 +103,11 @@ function fetchBreweries(city, state) {
       console.log(data);
       document.getElementById("breweries").innerHTML = "";
 
-      // If city or state
-      // if (!city || state) {
-      //   alert("no breweries");
-      //   return;
-      // }
-
       // Creates a card for each brewery and adds it to the brewery list
       for (var i = 0; i < data.length; i++) {
         var breweryList = document.createElement("div");
         breweryList.className = "brewery-container card";
         document.getElementById("breweries").appendChild(breweryList);
-
-        // if (data.length == 0) {
-        //   ("alert: no breweries in your city");
-        // }
       }
 
       // Container for each brewery info card
@@ -133,9 +115,6 @@ function fetchBreweries(city, state) {
 
       // Inserts data for each brewery
       for (var i = 0; i < data.length; i++) {
-        console.log(data.name);
-        console.log(breweryList.length);
-
         breweryContainer[i].innerHTML = "";
 
         // Creates header for brewery name
@@ -152,25 +131,26 @@ function fetchBreweries(city, state) {
           data[i].city + ", " + data[i].state + ", " + data[i].postal_code;
         breweryContainer[i].appendChild(breweryAddress2);
 
-        // Creates and links to brewery phone number
+        // Creates links to brewery phone number
         var breweryPhone = document.createElement("a");
-        if(data[i].phone != null) {
+        if (data[i].phone != null) {
           breweryPhone.innerHTML = "📞  " + data[i].phone;
         } else {
           breweryPhone.innerHTML = "";
         }
         breweryPhone.setAttribute("href", "tel:" + data[i].phone);
+        breweryPhone.setAttribute("target", "_blank");
         breweryContainer[i].appendChild(breweryPhone);
 
         // Creates links to brewery website
         var breweryWebsite = document.createElement("a");
-        if(data[i].website_url != null) {
+        if (data[i].website_url != null) {
           breweryWebsite.innerHTML = "🖥  " + data[i].website_url;
-        }else {
+        } else {
           breweryWebsite.innerHTML = "";
         }
-        
         breweryWebsite.setAttribute("href", data[i].website_url);
+        breweryWebsite.setAttribute("target", "_blank");
         breweryContainer[i].appendChild(breweryWebsite);
       }
 
@@ -179,15 +159,9 @@ function fetchBreweries(city, state) {
         var noBrewery = document.createElement("h5");
         noBrewery.innerHTML =
           "Sorry, no breweries were found. On the plus side, you can still enjoy a cute dog photo!";
-
         document.getElementById("breweries").appendChild(noBrewery);
         return;
       }
-
-      // if (city && state == null) {
-      //   alert("no city and state entered");
-      //   return;
-      // }
     });
 
   // TODO: this catch doesnt work
@@ -197,9 +171,6 @@ function fetchBreweries(city, state) {
 
   // });
 }
-
-// Dog photo image section
-var dogPhoto = document.getElementById("dog-photo");
 
 // Fetches random dog photo
 function fetchDogs() {
@@ -220,9 +191,3 @@ function fetchDogs() {
       dogPhoto.setAttribute("alt", "cute dog photo");
     });
 }
-
-// TODO: add if statement so that user always has to enter a city because if no city is entered but search button is clicked, it'll still return some random data
-
-// TODO: Add splice or filter so no duplicate searches added to the webpage
-
-// TODO: if phone number or website is null, then hide it
