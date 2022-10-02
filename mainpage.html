@@ -36,7 +36,7 @@
 
     <div id="container" class="row">
       <!-- Search bar section -->
-      <div id="search-section" class="col s3">
+      <div id="search-section" class="flow-text col s5 m3 l3">
         <form id="search-card">
           <input id="search-city" type="text" placeholder="Enter a city name" />
           <input
@@ -63,21 +63,21 @@
       </div>
 
       <!-- Application info -->
-      <div id="info">
-        <h5>
+      <div id="info" class="row">
+          <h5 class="flow-text col s7 m9 l9">
           Please enter a city and state in the US for a list of your local
           breweries. As a bonus, you'll also receive a cute dog photo you can
           show off at the brewery!
-        </h5>
+          </h5>
 
-        <h4 id="brewery-header">Breweries in your city:</h4>
+        <h4 id="brewery-header" class="flow-text col s4 pull-s3">Breweries in your city:</h4>
       </div>
 
       <!-- Section that displays brewery data -->
-      <div id="breweries" class="col s6"></div>
+      <div id="breweries" class="col s12 m6 l6"></div>
 
       <!-- Section that displays dog photo -->
-      <div id="dog" class="col s3">
+      <div id="dog" class="col s6">
         <img id="dog-photo" class="hide" src="" />
       </div>
     </div>
