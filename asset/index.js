@@ -56,7 +56,7 @@ function renderSearchHistory() {
 
     const historyList = document.createElement("input");
     historyList.setAttribute("type", "text");
-    historyList.setAttribute("class", "waves-effect waves-teal btn-flat");
+    historyList.setAttribute("class", "waves-effect waves-teal btn-flat flow-text");
 
     // set array object city and state into attribute so we can get the direct city and state to use the function of fetchBreweries.
     historyList.setAttribute(
