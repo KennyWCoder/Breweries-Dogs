@@ -6,4 +6,6 @@ The purpose of the website is to help locate local breweries in a fun way. When 
 ![alt text](asset/images/Screen%20Shot%202022-10-02%20at%208.11.22%20AM.png)
 
 
+
+
 ![alt text](asset/images/Screen%20Shot%202022-10-02%20at%208.11.08%20AM.png)
